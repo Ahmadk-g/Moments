@@ -19,8 +19,7 @@
   },
   "scripts": {
     "heroku-prebuild": "npm install -g serve",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,scss,md}'",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
