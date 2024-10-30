@@ -14,33 +14,34 @@ export const ProfileDataProvider = ({ children }) => {
         // we will use the pageProfile later!
         pageProfile: { results: [] },
         popularProfiles: { results: [] },
-      });
-      const currentUser = useCurrentUser();
+    });
+    const currentUser = useCurrentUser();
     
-      useEffect(() => {
+    useEffect(() => {
         const handleMount = async () => {
-          try {
-            const { data } = await axiosReq.get(
-              "/profiles/?ordering=-followers_count"
-            );
-            setProfileData((prevState) => ({
-              ...prevState,
-              popularProfiles: data,
-            }));
-          } catch (err) {
-            console.log(err);
-          }
+            try {
+                const { data } = await axiosReq.get(
+                "/profiles/?ordering=-followers_count"
+                );
+                setProfileData((prevState) => ({
+                ...prevState,
+                popularProfiles: data,
+                }));
+            } catch (err) {
+                console.log(err);
+            }
         };
-    
-        handleMount();
-      }, [currentUser]);
 
-}
+            handleMount();
+        }, [currentUser]);
 
-return (
-    <ProfileDataContext.Provider value={profileData}>
-        <SetProfileDataContext.Provider value={setProfileData}>
-            {children}
-        </SetProfileDataContext.Provider>
-    </ProfileDataContext.Provider>
-  )
+
+
+        return (
+            <ProfileDataContext.Provider value={profileData}>
+                <SetProfileDataContext.Provider value={setProfileData}>
+                    {children}
+                </SetProfileDataContext.Provider>
+            </ProfileDataContext.Provider>
+        );
+    };
